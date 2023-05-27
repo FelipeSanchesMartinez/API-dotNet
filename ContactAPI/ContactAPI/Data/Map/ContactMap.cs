@@ -11,7 +11,7 @@ namespace ContactAPI.Data.Map
         {
             builder.Property(contact => contact.CreatAt).IsRequired();
             builder.Property(contact => contact.UpdatedAt).IsRequired();
-            builder.Property(contact => contact.DeletedAt).IsRequired();
+            builder.Property(contact => contact.Deleted).IsRequired();
             builder.Property(contact => contact.Id).IsRequired();
             builder.Property(contact => contact.Name)
                 .HasAnnotation("MinLength", 5)
