@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactAPI.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230527134944_Initial")]
-    partial class Initial
+    [Migration("20230527155223_Initical")]
+    partial class Initical
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace ContactAPI.Migrations
                     b.Property<DateTime>("CreatAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()

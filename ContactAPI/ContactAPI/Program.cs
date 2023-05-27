@@ -12,7 +12,6 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SqlContext>();
-builder.Configuration.GetConnectionString("SqLite");
 builder.Services.AddScoped<IContactService, ContactService >();
 
 var app = builder.Build();
