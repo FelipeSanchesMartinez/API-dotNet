@@ -1,7 +1,10 @@
 ﻿using ContactAPI.Data;
 using ContactAPI.Model;
+using ContactAPI.ViewModels;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+using System.Xml.Linq;
 
 namespace ContactAPI.Services
 {
@@ -14,22 +17,37 @@ namespace ContactAPI.Services
             _sqlContext = sqlContext;
         }
 
-        public void Insert(ContactModel contact)
+        public ContactModel Insert(InsertContactViewModel viewModel)
 
         {
-            contact.CreatAt = DateTime.Now;
-            _sqlContext.Contato.Add(contact);
+            ContactModel newContact = new ContactModel()
+            {
+                Name = viewModel.Name,
+                Contact = viewModel.Contact,
+                EmailAddress = viewModel.EmailAddress
+            };
+            newContact.CreatAt = DateTime.Now;
+            _sqlContext.Contato.Add(newContact);
             _sqlContext.SaveChanges();
+            return newContact;
+
         }
 
-        public void Update(long id, ContactModel contact)
+        public ContactModel Update(UpdateContactViewModel viewModel)
 
         {
-            ContactModel contactUpdate = _sqlContext.Contato.AsNoTracking().FirstOrDefault(contact => contact.Id == id);
+            ContactModel contactUpdate = new ContactModel()
+            {
+                Name = viewModel.Name,
+                Contact = viewModel.Contact,
+                EmailAddress = viewModel.EmailAddress
+            };
+
             if (contactUpdate != null)
-                contact.UpdatedAt = DateTime.Now;
-            _sqlContext.Contato.Add(contact);
+                contactUpdate.UpdatedAt = DateTime.Now;
+            _sqlContext.Contato.Add(contactUpdate);
             _sqlContext.SaveChanges();
+            return contactUpdate;
         }
     }
 }

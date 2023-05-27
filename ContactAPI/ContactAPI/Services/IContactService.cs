@@ -1,10 +1,11 @@
 ﻿using ContactAPI.Model;
+using ContactAPI.ViewModels;
 
 namespace ContactAPI.Services
 {
     public interface IContactService
     {
-        void Insert(ContactModel contact);
-        void Update(long id, ContactModel contact);
+        ContactModel Insert(InsertContactViewModel viewModel);
+        ContactModel Update(UpdateContactViewModel viewModel);
     }
 }
